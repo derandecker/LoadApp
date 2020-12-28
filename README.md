@@ -1,5 +1,7 @@
 # LoadApp
 
+**This is a project for the Udacity.com Nanodegree "Developing Android Apps with Kotlin." The initial commit consists of simple starter code cloned from a Udacity GitHub repository. The final project submission, which is all my own work derived from the starter code, will be noted as such in the commit message. Below are the original instructions included with the starter code.**
+
 In this project students will create an app to download a file from Internet by clicking on a custom-built button where:
  - width of the button gets animated from left to right;
  - text gets changed based on different states of the button;
