@@ -14,4 +14,8 @@
     <string name="glide_radiobutton_text">Glide - Image Loading Library by BumpTech</string>
     <string name="radio_udacity">LoadApp - Current repository by Udacity</string>
     <string name="radio_retrofit">Retrofit - Type-safe HTTP client for Android and Java by Square, Inc</string>
+    <string name="glide_url">https://github.com/bumptech/glide/archive/master.zip</string>
+    <string name="loadapp_url">https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip</string>
+    <string name="retrofit_url">https://github.com/square/retrofit/archive/master.zip</string>
+    <string name="choose_download_file">Choose a file to download first</string>
 </resources>

@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
             if (downloadUrl.isNullOrEmpty()) {
                 Toast.makeText(
                     applicationContext,
-                    "Choose a file to download first",
-                    Toast.LENGTH_LONG
+                    getString(R.string.choose_download_file),
+                    Toast.LENGTH_SHORT
                 ).show()
             } else {
                 download()
@@ -50,6 +50,13 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+
+            Toast.makeText(
+                applicationContext,
+                "Download Complete - ID: $id",
+                Toast.LENGTH_SHORT
+            ).show()
+
         }
     }
 
@@ -68,31 +75,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-//        private const val URL =
+        //        private const val URL =
 //            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
         private const val CHANNEL_ID = "channelId"
     }
 
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
-            // Is the button now checked?
             val checked = view.isChecked
 
-            // Check which radio button was clicked
             when (view.getId()) {
                 R.id.radio_glide ->
                     if (checked) {
                         downloadUrl =
-                            "https://github.com/bumptech/glide/archive/master.zip"                    }
+                            getString(R.string.glide_url)
+                    }
                 R.id.radio_loadapp ->
                     if (checked) {
                         downloadUrl =
-                            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+                            getString(R.string.loadapp_url)
                     }
                 R.id.radio_retrofit ->
                     if (checked) {
                         downloadUrl =
-                            "https://github.com/square/retrofit/archive/master.zip"
+                            getString(R.string.retrofit_url)
                     }
             }
         }
