@@ -18,4 +18,5 @@
     <string name="loadapp_url">https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip</string>
     <string name="retrofit_url">https://github.com/square/retrofit/archive/master.zip</string>
     <string name="choose_download_file">Choose a file to download first</string>
+    <string name="button_text_download">DOWNLOAD</string>
 </resources>

@@ -33,6 +33,10 @@ class LoadingButton @JvmOverloads constructor(
 
     }
 
+    override fun performClick(): Boolean {
+        return super.performClick()
+
+    }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -52,9 +56,10 @@ class LoadingButton @JvmOverloads constructor(
 
         paint.color = Color.BLACK
         paint.textAlign = Paint.Align.CENTER
-        canvas?.drawText("DOWNLOAD", width/2.0f, height/2.0f, paint)
-
-
+        canvas?.drawText(
+            context.getString(R.string.button_text_download),
+            width / 2.0f, height / 2.0f, paint
+        )
 
 
     }
