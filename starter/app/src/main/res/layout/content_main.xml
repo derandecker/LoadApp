@@ -40,12 +40,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/radiobutton_bottom_margin"
+            android:onClick="onRadioButtonClicked"
             android:text="@string/glide_radiobutton_text" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/radio_loadapp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:layout_marginBottom="@dimen/radiobutton_bottom_margin"
             android:text="@string/radio_udacity" />
 
@@ -53,6 +55,7 @@
             android:id="@+id/radio_retrofit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="@string/radio_retrofit" />
     </RadioGroup>
 
