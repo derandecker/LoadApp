@@ -9,6 +9,54 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <!-- Downloaded cloud image from
+    https://material.io/resources/icons/?icon=cloud_download&style=baseline
+    and imported using Vector Asset Studio
+    (right click Drawable folder, New, Vector Asset) -->
+
+    <ImageView
+        android:id="@+id/download_image"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#112B47"
+        android:src="@drawable/ic_cloud_download_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/holo_purple" />
+
+    <RadioGroup
+        android:id="@+id/radio_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@id/custom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/download_image">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_glide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/radiobutton_bottom_margin"
+            android:text="@string/glide_radiobutton_text" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_loadapp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/radiobutton_bottom_margin"
+            android:text="@string/radio_udacity" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/radio_retrofit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_retrofit" />
+    </RadioGroup>
+
+
     <com.udacity.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
