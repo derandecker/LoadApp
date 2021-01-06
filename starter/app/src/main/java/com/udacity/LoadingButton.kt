@@ -9,6 +9,7 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import android.view.animation.LinearInterpolator
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -27,6 +28,7 @@ class LoadingButton @JvmOverloads constructor(
 
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         invalidate()
+        Log.d("Button", "State changed")
     }
 
 
@@ -43,20 +45,60 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
 
         when (buttonState) {
-            ButtonState.Clicked -> Log.d("BUTTON", "CLICKED") //drawButtonLoading(canvas)
-            ButtonState.Loading -> Log.d("BUTTON", "LOADING")
+            ButtonState.Clicked -> drawButtonLoading(canvas)
+//            ButtonState.Loading -> Log.d("BUTTON", "LOADING")
             ButtonState.Completed -> drawButton(canvas)
         }
 
+    }
+
+    private fun drawButtonLoading(canvas: Canvas?) {
+        paint.color = Color.CYAN
+
+        canvas?.drawRect(
+            0.0f,
+            0.0f,
+            width.toFloat(),
+            height.toFloat(),
+            paint
+        )
+
+        paint.color = Color.BLACK
+        paint.textAlign = Paint.Align.CENTER
+        canvas?.drawText(
+            context.getString(R.string.button_loading),
+            width / 2.0f, height / 2.0f, paint
+        )
+
+        animateButton(canvas)
+    }
+
+    private fun animateButton(canvas: Canvas?) {
+        paint.color = Color.BLUE
+        valueAnimator.duration = 4000
+        valueAnimator.interpolator = LinearInterpolator()
+        valueAnimator.setFloatValues(0.0f, width.toFloat())
+        valueAnimator.addUpdateListener {
+            val animatedWidth = it.animatedValue as Float
+            canvas?.drawRect(
+                0.0f,
+                0.0f,
+                animatedWidth,
+                height.toFloat(),
+                paint
+            )
+            Log.d("REDRAW", animatedWidth.toString())
+        }
+        valueAnimator.start()
     }
 
     private fun drawButton(canvas: Canvas?) {
         paint.color = Color.CYAN
 
         canvas?.drawRect(
-            paddingLeft.toFloat(),
             0.0f,
-            paddingRight.toFloat() + width,
+            0.0f,
+            width.toFloat(),
             height.toFloat(),
             paint
         )

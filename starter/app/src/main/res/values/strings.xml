@@ -19,4 +19,5 @@
     <string name="retrofit_url">https://github.com/square/retrofit/archive/master.zip</string>
     <string name="choose_download_file">Choose a file to download first</string>
     <string name="button_text_download">DOWNLOAD</string>
+    <string name="file_downloading">File is downloading</string>
 </resources>
