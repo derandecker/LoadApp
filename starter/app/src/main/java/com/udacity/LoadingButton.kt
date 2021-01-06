@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import kotlin.properties.Delegates
 
@@ -25,7 +26,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
-
+        invalidate()
     }
 
 
@@ -34,17 +35,23 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
+        buttonState = ButtonState.Clicked
         return super.performClick()
-
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        paint.color = when (buttonState) {
-            ButtonState.Completed -> Color.CYAN
-            ButtonState.Clicked -> Color.BLUE
-            ButtonState.Loading -> Color.BLUE
+
+        when (buttonState) {
+            ButtonState.Clicked -> Log.d("BUTTON", "CLICKED") //drawButtonLoading(canvas)
+            ButtonState.Loading -> Log.d("BUTTON", "LOADING")
+            ButtonState.Completed -> drawButton(canvas)
         }
+
+    }
+
+    private fun drawButton(canvas: Canvas?) {
+        paint.color = Color.CYAN
 
         canvas?.drawRect(
             paddingLeft.toFloat(),
@@ -60,8 +67,6 @@ class LoadingButton @JvmOverloads constructor(
             context.getString(R.string.button_text_download),
             width / 2.0f, height / 2.0f, paint
         )
-
-
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
