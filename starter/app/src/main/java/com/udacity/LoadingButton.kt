@@ -19,6 +19,7 @@ class LoadingButton @JvmOverloads constructor(
     private var heightSize = 0
 
     private val valueAnimator = ValueAnimator()
+    private var animatedWidth = 0.0f
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
         textAlign = Paint.Align.CENTER
@@ -27,8 +28,15 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+        when (buttonState) {
+            ButtonState.Loading -> setAnimator()
+            ButtonState.Completed -> stopAnimator()
+        }
+    }
+
+    private fun stopAnimator() {
+        valueAnimator.cancel()
         invalidate()
-        Log.d("Button", "State changed")
     }
 
 
@@ -36,23 +44,9 @@ class LoadingButton @JvmOverloads constructor(
 
     }
 
-    override fun performClick(): Boolean {
-        buttonState = ButtonState.Clicked
-        return super.performClick()
-    }
-
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        when (buttonState) {
-            ButtonState.Clicked -> drawButtonLoading(canvas)
-//            ButtonState.Loading -> Log.d("BUTTON", "LOADING")
-            ButtonState.Completed -> drawButton(canvas)
-        }
-
-    }
-
-    private fun drawButtonLoading(canvas: Canvas?) {
         paint.color = Color.CYAN
 
         canvas?.drawRect(
@@ -63,23 +57,16 @@ class LoadingButton @JvmOverloads constructor(
             paint
         )
 
-        paint.color = Color.BLACK
-        paint.textAlign = Paint.Align.CENTER
-        canvas?.drawText(
-            context.getString(R.string.button_loading),
-            width / 2.0f, height / 2.0f, paint
-        )
-
-        animateButton(canvas)
-    }
-
-    private fun animateButton(canvas: Canvas?) {
-        paint.color = Color.BLUE
-        valueAnimator.duration = 4000
-        valueAnimator.interpolator = LinearInterpolator()
-        valueAnimator.setFloatValues(0.0f, width.toFloat())
-        valueAnimator.addUpdateListener {
-            val animatedWidth = it.animatedValue as Float
+        if (buttonState == ButtonState.Completed) {
+            paint.color = Color.BLACK
+            paint.textAlign = Paint.Align.CENTER
+            canvas?.drawText(
+                context.getString(R.string.button_text_download),
+                width / 2.0f, height / 2.0f, paint
+            )
+        }
+        if (buttonState == ButtonState.Loading) {
+            paint.color = Color.BLUE
             canvas?.drawRect(
                 0.0f,
                 0.0f,
@@ -87,29 +74,32 @@ class LoadingButton @JvmOverloads constructor(
                 height.toFloat(),
                 paint
             )
-            Log.d("REDRAW", animatedWidth.toString())
+
+        }
+
+    }
+
+
+//        paint.color = Color.BLACK
+//        paint.textAlign = Paint.Align.CENTER
+//        canvas?.drawText(
+//            context.getString(R.string.button_loading),
+//            width / 2.0f, height / 2.0f, paint
+//        )
+
+    private fun setAnimator() {
+
+        valueAnimator.duration = 4000
+        valueAnimator.interpolator = LinearInterpolator()
+        valueAnimator.setFloatValues(0.0f, width.toFloat())
+        valueAnimator.addUpdateListener {
+            animatedWidth = it.animatedValue as Float
+            Log.d("setAnimator", animatedWidth.toString())
+            invalidate()
         }
         valueAnimator.start()
     }
 
-    private fun drawButton(canvas: Canvas?) {
-        paint.color = Color.CYAN
-
-        canvas?.drawRect(
-            0.0f,
-            0.0f,
-            width.toFloat(),
-            height.toFloat(),
-            paint
-        )
-
-        paint.color = Color.BLACK
-        paint.textAlign = Paint.Align.CENTER
-        canvas?.drawText(
-            context.getString(R.string.button_text_download),
-            width / 2.0f, height / 2.0f, paint
-        )
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val minw: Int = paddingLeft + paddingRight + suggestedMinimumWidth

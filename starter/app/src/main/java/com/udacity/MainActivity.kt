@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                download()
                 custom_button.buttonState = ButtonState.Loading
+                download()
             }
         }
     }
