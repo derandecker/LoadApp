@@ -57,36 +57,41 @@ class LoadingButton @JvmOverloads constructor(
             paint
         )
 
-        if (buttonState == ButtonState.Completed) {
-            paint.color = Color.BLACK
-            paint.textAlign = Paint.Align.CENTER
-            canvas?.drawText(
-                context.getString(R.string.button_text_download),
-                width / 2.0f, height / 2.0f, paint
-            )
-        }
-        if (buttonState == ButtonState.Loading) {
-            paint.color = Color.BLUE
-            canvas?.drawRect(
-                0.0f,
-                0.0f,
-                animatedWidth,
-                height.toFloat(),
-                paint
-            )
-
-            paint.color = Color.BLACK
-            paint.textAlign = Paint.Align.CENTER
-            canvas?.drawText(
-                context.getString(R.string.button_loading),
-                width / 2.0f, height / 2.0f, paint
-            )
-
+        when (buttonState) {
+            ButtonState.Loading -> setLoadingAnimation(canvas)
+            ButtonState.Completed -> setDefaultButtonState(canvas)
         }
 
     }
 
+    private fun setLoadingAnimation(canvas: Canvas?) {
+        paint.color = Color.BLUE
+        canvas?.drawRect(
+            0.0f,
+            0.0f,
+            animatedWidth,
+            height.toFloat(),
+            paint
+        )
 
+        paint.color = Color.BLACK
+        paint.textAlign = Paint.Align.CENTER
+        canvas?.drawText(
+            context.getString(R.string.button_loading),
+            width / 2.0f, height / 2.0f, paint
+        )
+
+    }
+
+    private fun setDefaultButtonState(canvas: Canvas?) {
+        paint.color = Color.BLACK
+        paint.textAlign = Paint.Align.CENTER
+        canvas?.drawText(
+            context.getString(R.string.button_text_download),
+            width / 2.0f, height / 2.0f, paint
+        )
+
+    }
 
 
     private fun setAnimator() {
