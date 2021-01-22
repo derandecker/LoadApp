@@ -75,23 +75,26 @@ class LoadingButton @JvmOverloads constructor(
                 paint
             )
 
+            paint.color = Color.BLACK
+            paint.textAlign = Paint.Align.CENTER
+            canvas?.drawText(
+                context.getString(R.string.button_loading),
+                width / 2.0f, height / 2.0f, paint
+            )
+
         }
 
     }
 
 
-//        paint.color = Color.BLACK
-//        paint.textAlign = Paint.Align.CENTER
-//        canvas?.drawText(
-//            context.getString(R.string.button_loading),
-//            width / 2.0f, height / 2.0f, paint
-//        )
+
 
     private fun setAnimator() {
 
         valueAnimator.duration = 4000
         valueAnimator.interpolator = LinearInterpolator()
         valueAnimator.setFloatValues(0.0f, width.toFloat())
+        valueAnimator.repeatCount = ValueAnimator.INFINITE
         valueAnimator.addUpdateListener {
             animatedWidth = it.animatedValue as Float
             Log.d("setAnimator", animatedWidth.toString())
