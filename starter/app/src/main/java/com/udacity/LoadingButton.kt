@@ -97,7 +97,6 @@ class LoadingButton @JvmOverloads constructor(
         valueAnimator.repeatCount = ValueAnimator.INFINITE
         valueAnimator.addUpdateListener {
             animatedWidth = it.animatedValue as Float
-            Log.d("setAnimator", animatedWidth.toString())
             invalidate()
         }
         valueAnimator.start()
