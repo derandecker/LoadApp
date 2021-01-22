@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                 "Download Complete - ID: $id",
                 Toast.LENGTH_SHORT
             ).show()
+            custom_button.buttonState = ButtonState.Completed
 
         }
     }
