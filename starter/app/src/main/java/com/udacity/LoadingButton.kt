@@ -26,7 +26,7 @@ class LoadingButton @JvmOverloads constructor(
         typeface = Typeface.create("", Typeface.BOLD)
     }
 
-    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+    var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         invalidate()
         Log.d("Button", "State changed")
     }

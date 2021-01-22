@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_main.view.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             } else {
                 download()
+                custom_button.buttonState = ButtonState.Loading
             }
         }
     }
