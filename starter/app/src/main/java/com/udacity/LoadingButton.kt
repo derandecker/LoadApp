@@ -74,7 +74,7 @@ class LoadingButton @JvmOverloads constructor(
             paint
         )
 
-        paint.color = Color.BLACK
+        paint.color = Color.WHITE
         paint.textAlign = Paint.Align.CENTER
         canvas?.drawText(
             context.getString(R.string.button_loading),
@@ -84,7 +84,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private fun setDefaultButtonState(canvas: Canvas?) {
-        paint.color = Color.BLACK
+        paint.color = Color.WHITE
         paint.textAlign = Paint.Align.CENTER
         canvas?.drawText(
             context.getString(R.string.button_text_download),
@@ -96,7 +96,7 @@ class LoadingButton @JvmOverloads constructor(
 
     private fun setAnimator() {
 
-        valueAnimator.duration = 4000
+        valueAnimator.duration = 2500
         valueAnimator.interpolator = LinearInterpolator()
         valueAnimator.setFloatValues(0.0f, width.toFloat())
         valueAnimator.repeatCount = ValueAnimator.INFINITE
