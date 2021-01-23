@@ -3,18 +3,21 @@ package com.udacity
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.core.content.withStyledAttributes
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
+    private var backgroundCustomColor = 0
+    private var loadingBarColor = 0
+    private var textColor = 0
+
     private var widthSize = 0
     private var heightSize = 0
 
@@ -41,13 +44,18 @@ class LoadingButton @JvmOverloads constructor(
 
 
     init {
+        context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
+            backgroundCustomColor = getColor(R.styleable.LoadingButton_backgroundCustomColor, 0)
+            loadingBarColor = getColor(R.styleable.LoadingButton_loadingBarColor, 0)
+            textColor = getColor(R.styleable.LoadingButton_textColor, 0)
+        }
 
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        paint.color = Color.CYAN
+        paint.color = backgroundCustomColor
 
         canvas?.drawRect(
             0.0f,
@@ -65,7 +73,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private fun setLoadingAnimation(canvas: Canvas?) {
-        paint.color = Color.BLUE
+        paint.color = loadingBarColor
         canvas?.drawRect(
             0.0f,
             0.0f,
@@ -74,7 +82,7 @@ class LoadingButton @JvmOverloads constructor(
             paint
         )
 
-        paint.color = Color.WHITE
+        paint.color = textColor
         paint.textAlign = Paint.Align.CENTER
         canvas?.drawText(
             context.getString(R.string.button_loading),
@@ -84,7 +92,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private fun setDefaultButtonState(canvas: Canvas?) {
-        paint.color = Color.WHITE
+        paint.color = textColor
         paint.textAlign = Paint.Align.CENTER
         canvas?.drawText(
             context.getString(R.string.button_text_download),
