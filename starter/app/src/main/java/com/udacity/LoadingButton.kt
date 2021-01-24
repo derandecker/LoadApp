@@ -3,6 +3,7 @@ package com.udacity
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
@@ -38,12 +39,6 @@ class LoadingButton @JvmOverloads constructor(
             ButtonState.Completed -> stopAnimator()
         }
     }
-
-    private fun stopAnimator() {
-        valueAnimator.cancel()
-        invalidate()
-    }
-
 
     init {
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
@@ -91,6 +86,17 @@ class LoadingButton @JvmOverloads constructor(
             width / 2.0f, height / 2.0f, paint
         )
 
+        val circleLeft: Float = width.toFloat() - .333333f*width
+        val circleTop: Float = height.toFloat() - .666667f*height
+        val circleRight: Float = circleLeft + 60.0f
+        val circleBottom: Float = circleTop + 60.0f
+        val sweepAngle: Float = (animatedWidth/width) * 360
+
+        paint.color = Color.YELLOW
+        canvas?.drawArc(
+            circleLeft, circleTop, circleRight, circleBottom,
+            0.0f, sweepAngle, true, paint
+        )
 
     }
 
@@ -118,6 +124,10 @@ class LoadingButton @JvmOverloads constructor(
         valueAnimator.start()
     }
 
+    private fun stopAnimator() {
+        valueAnimator.cancel()
+        invalidate()
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val minw: Int = paddingLeft + paddingRight + suggestedMinimumWidth
