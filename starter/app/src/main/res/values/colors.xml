@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#004349</color>
     <color name="colorAccent">#F9A825</color>
     <color name="white">#FFFFFF</color>
+    <color name="loading_bar_color">#0011ff</color>
+    <color name="download_button_text_color">#ffffff</color>
 </resources>

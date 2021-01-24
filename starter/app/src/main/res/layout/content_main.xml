@@ -65,9 +65,9 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="20dp"
-        app:loadingBarColor="#0011ff"
+        app:loadingBarColor="@color/loading_bar_color"
         app:backgroundCustomColor="@color/colorPrimary"
-        app:textColor="#ffffff"
+        app:textColor="@color/download_button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -11,6 +11,8 @@ import android.view.animation.LinearInterpolator
 import androidx.core.content.withStyledAttributes
 import kotlin.properties.Delegates
 
+private const val ANIMATION_DURATION: Long = 3000
+
 class LoadingButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
@@ -89,6 +91,7 @@ class LoadingButton @JvmOverloads constructor(
             width / 2.0f, height / 2.0f, paint
         )
 
+
     }
 
     private fun setDefaultButtonState(canvas: Canvas?) {
@@ -104,7 +107,7 @@ class LoadingButton @JvmOverloads constructor(
 
     private fun setAnimator() {
 
-        valueAnimator.duration = 2500
+        valueAnimator.duration = ANIMATION_DURATION
         valueAnimator.interpolator = LinearInterpolator()
         valueAnimator.setFloatValues(0.0f, width.toFloat())
         valueAnimator.repeatCount = ValueAnimator.INFINITE
