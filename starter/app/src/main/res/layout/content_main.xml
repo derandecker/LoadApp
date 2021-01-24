@@ -68,6 +68,7 @@
         app:loadingBarColor="@color/loading_bar_color"
         app:backgroundCustomColor="@color/colorPrimary"
         app:textColor="@color/download_button_text_color"
+        app:loadingCircleColor="@color/loading_circle_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

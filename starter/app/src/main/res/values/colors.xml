@@ -6,4 +6,5 @@
     <color name="white">#FFFFFF</color>
     <color name="loading_bar_color">#0011ff</color>
     <color name="download_button_text_color">#ffffff</color>
+    <color name="loading_circle_color">#FFFF00</color>
 </resources>

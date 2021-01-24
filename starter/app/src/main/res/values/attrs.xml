@@ -4,5 +4,6 @@
         <attr name="backgroundCustomColor" format="color"/>
         <attr name="loadingBarColor" format="color"/>
         <attr name="textColor" format="color"/>
+        <attr name="loadingCircleColor" format="color"/>
     </declare-styleable>
 </resources>

@@ -20,6 +20,7 @@ class LoadingButton @JvmOverloads constructor(
     private var backgroundCustomColor = 0
     private var loadingBarColor = 0
     private var textColor = 0
+    private var loadingCircleColor = 0
 
     private var widthSize = 0
     private var heightSize = 0
@@ -45,6 +46,7 @@ class LoadingButton @JvmOverloads constructor(
             backgroundCustomColor = getColor(R.styleable.LoadingButton_backgroundCustomColor, 0)
             loadingBarColor = getColor(R.styleable.LoadingButton_loadingBarColor, 0)
             textColor = getColor(R.styleable.LoadingButton_textColor, 0)
+            loadingCircleColor = getColor(R.styleable.LoadingButton_loadingCircleColor, 0)
         }
 
     }
@@ -92,7 +94,7 @@ class LoadingButton @JvmOverloads constructor(
         val circleBottom: Float = circleTop + 60.0f
         val sweepAngle: Float = (animatedWidth/width) * 360
 
-        paint.color = Color.YELLOW
+        paint.color = loadingCircleColor
         canvas?.drawArc(
             circleLeft, circleTop, circleRight, circleBottom,
             0.0f, sweepAngle, true, paint
