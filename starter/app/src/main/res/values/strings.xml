@@ -20,4 +20,7 @@
     <string name="choose_download_file">Choose a file to download first</string>
     <string name="button_text_download">DOWNLOAD</string>
     <string name="file_downloading">File is downloading</string>
+    <string name="download_channel_description">Download status notifications (complete, fail, etc)</string>
+    <string name="download_channel_name">Download Status</string>
+    <string name="download_channel_id">download_status_channel</string>
 </resources>
