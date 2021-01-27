@@ -61,6 +61,7 @@
         android:textSize="@dimen/ok_button_text_size"
         android:textColor="@color/download_button_text_color"
         android:backgroundTint="@color/colorAccent"
+        android:onClick="goBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
