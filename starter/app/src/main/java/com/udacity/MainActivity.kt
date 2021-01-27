@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
             if (context != null) {
                 notificationManager.sendNotification(
-                    "Status update for your download",
+                    getString(R.string.notification_text_content),
                     getString(R.string.download_channel_name),
                     getString(R.string.download_channel_id),
                     context

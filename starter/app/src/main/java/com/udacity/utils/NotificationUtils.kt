@@ -14,7 +14,7 @@ private val NOTIFICATION_ID = 0
 private const val CHECK_STATUS_ACTION = "Check Status"
 
 fun NotificationManager.sendNotification(
-    downloadStatus: String,
+    contentText: String,
     notificationTitle: String,
     channelId: String,
     applicationContext: Context
@@ -39,7 +39,7 @@ fun NotificationManager.sendNotification(
     val builder = NotificationCompat.Builder(applicationContext, channelId)
         .setSmallIcon(R.drawable.ic_cloud_download_black_24dp)
         .setContentTitle(notificationTitle)
-        .setContentText(downloadStatus)
+        .setContentText(contentText)
         .setContentIntent(contentPendingIntent)
         .setAutoCancel(true)
         .addAction(

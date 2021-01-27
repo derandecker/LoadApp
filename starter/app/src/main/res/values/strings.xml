@@ -26,4 +26,5 @@
     <string name="file_name_text">File name:</string>
     <string name="status_text">Status:</string>
     <string name="ok_button_text">OK</string>
+    <string name="notification_text_content">Status update for your download</string>
 </resources>
