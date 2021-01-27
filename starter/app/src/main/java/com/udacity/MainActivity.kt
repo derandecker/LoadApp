@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         createNotificationChannel(
-            getString(R.string.download_channel_id),
+            CHANNEL_ID,
             getString(R.string.download_channel_name),
             getString(R.string.download_channel_description)
         )
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 notificationManager.sendNotification(
                     getString(R.string.notification_text_content),
                     getString(R.string.download_channel_name),
-                    getString(R.string.download_channel_id),
+                    CHANNEL_ID,
                     context
                 )
             }
@@ -106,9 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        //        private const val URL =
-//            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
-        private const val CHANNEL_ID = "channelId"
+        private const val CHANNEL_ID = "download_status_channel"
     }
 
     fun onRadioButtonClicked(view: View) {
