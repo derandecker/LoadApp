@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layoutDescription="@xml/content_detail_scene"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".DetailActivity"
     tools:showIn="@layout/activity_detail">
@@ -23,14 +24,12 @@
         android:id="@+id/filename"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/glide_radiobutton_text"
+        android:layout_marginStart="@dimen/label_to_name_margin"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/standard_text_size"
-        android:layout_marginStart="@dimen/label_to_name_margin"
-        app:layout_constraintStart_toEndOf="@+id/filename_label"
-        app:layout_constraintTop_toTopOf="@id/filename_label"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="@+id/filename_label"
+        app:layout_constraintTop_toTopOf="@id/filename_label" />
 
     <TextView
         android:id="@+id/status_label"
@@ -47,25 +46,24 @@
         android:id="@+id/status"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Success"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/standard_text_size"
         app:layout_constraintStart_toStartOf="@id/filename"
         app:layout_constraintTop_toTopOf="@id/status_label" />
+
     <Button
         android:id="@+id/ok_button"
-        android:layout_margin="@dimen/standard_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ok_button_text"
-        android:textSize="@dimen/ok_button_text_size"
-        android:textColor="@color/download_button_text_color"
+        android:layout_margin="@dimen/standard_margin"
         android:backgroundTint="@color/colorAccent"
         android:onClick="goBack"
+        android:text="@string/ok_button_text"
+        android:textColor="@color/download_button_text_color"
+        android:textSize="@dimen/ok_button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

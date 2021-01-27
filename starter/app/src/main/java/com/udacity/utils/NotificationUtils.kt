@@ -14,21 +14,18 @@ private val NOTIFICATION_ID = 0
 private const val CHECK_STATUS_ACTION = "Check Status"
 
 fun NotificationManager.sendNotification(
+    fileName: String,
+    status: String,
     contentText: String,
     notificationTitle: String,
     channelId: String,
     applicationContext: Context
 ) {
-    val contentIntent = Intent(applicationContext, MainActivity::class.java)
-    val contentPendingIntent = PendingIntent.getActivity(
-        applicationContext,
-        NOTIFICATION_ID,
-        contentIntent,
-        PendingIntent.FLAG_UPDATE_CURRENT
-    )
-
 
     val statusIntent = Intent(applicationContext, DetailActivity::class.java)
+    statusIntent.putExtra("filename", fileName)
+    statusIntent.putExtra("status", status)
+
     val statusPendingIntent = PendingIntent.getActivity(
         applicationContext,
         NOTIFICATION_ID,
@@ -36,11 +33,13 @@ fun NotificationManager.sendNotification(
         PendingIntent.FLAG_UPDATE_CURRENT
     )
 
+
+
     val builder = NotificationCompat.Builder(applicationContext, channelId)
         .setSmallIcon(R.drawable.ic_cloud_download_black_24dp)
         .setContentTitle(notificationTitle)
         .setContentText(contentText)
-        .setContentIntent(contentPendingIntent)
+        .setContentIntent(statusPendingIntent)
         .setAutoCancel(true)
         .addAction(
             R.drawable.ic_assistant_black_24dp,
@@ -50,4 +49,5 @@ fun NotificationManager.sendNotification(
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     notify(NOTIFICATION_ID, builder.build())
+
 }

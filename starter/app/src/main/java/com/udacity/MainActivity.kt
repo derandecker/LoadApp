@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pendingIntent: PendingIntent
     private lateinit var action: NotificationCompat.Action
     private var downloadUrl: String? = null
+    private lateinit var fileName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,9 +70,19 @@ class MainActivity : AppCompatActivity() {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
             val notificationManager = getSystemService(NotificationManager::class.java)
+            var status: String? = null
+
+            val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+            if (id?.let { downloadManager.getUriForDownloadedFile(it) } != null){
+                status = "SUCCESS"
+            } else {
+                status = "FAIL"
+            }
 
             if (context != null) {
                 notificationManager.sendNotification(
+                    fileName,
+                    status,
                     getString(R.string.notification_text_content),
                     getString(R.string.download_channel_name),
                     CHANNEL_ID,
@@ -109,16 +120,19 @@ class MainActivity : AppCompatActivity() {
             when (view.getId()) {
                 R.id.radio_glide ->
                     if (checked) {
+                        fileName = getString(R.string.glide_radiobutton_text)
                         downloadUrl =
                             getString(R.string.glide_url)
                     }
                 R.id.radio_loadapp ->
                     if (checked) {
+                        fileName = getString(R.string.radio_udacity)
                         downloadUrl =
                             getString(R.string.loadapp_url)
                     }
                 R.id.radio_retrofit ->
                     if (checked) {
+                        fileName = getString(R.string.radio_retrofit)
                         downloadUrl =
                             getString(R.string.retrofit_url)
                     }
