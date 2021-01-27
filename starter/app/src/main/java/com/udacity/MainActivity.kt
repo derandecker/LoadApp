@@ -38,7 +38,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        registerReceiver(
+            downloadManagerReceiver,
+            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+        )
 
         custom_button.setOnClickListener {
             if (downloadUrl.isNullOrEmpty()) {
@@ -61,14 +64,19 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private val receiver = object : BroadcastReceiver() {
+    private val downloadManagerReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
             val notificationManager = getSystemService(NotificationManager::class.java)
 
             if (context != null) {
-                notificationManager.sendNotification("Complete", getString(R.string.download_channel_id), context)
+                notificationManager.sendNotification(
+                    "Status update for your download",
+                    getString(R.string.download_channel_name),
+                    getString(R.string.download_channel_id),
+                    context
+                )
             }
 
 
