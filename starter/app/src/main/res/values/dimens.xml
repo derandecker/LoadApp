@@ -3,4 +3,9 @@
 
     <dimen name="default_text_size">20sp</dimen>
     <dimen name="radiobutton_bottom_margin">8dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="standard_text_size">24sp</dimen>
+    <dimen name="label_to_name_margin">64dp</dimen>
+    <dimen name="label_top_margin">32dp</dimen>
+    <dimen name="ok_button_text_size">18sp</dimen>
 </resources>

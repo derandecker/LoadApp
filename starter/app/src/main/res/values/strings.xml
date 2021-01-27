@@ -23,4 +23,7 @@
     <string name="download_channel_description">Download status notifications (complete, fail, etc)</string>
     <string name="download_channel_name">Download Status</string>
     <string name="download_channel_id">download_status_channel</string>
+    <string name="file_name_text">File name:</string>
+    <string name="status_text">Status:</string>
+    <string name="ok_button_text">OK</string>
 </resources>
