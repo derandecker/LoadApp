@@ -27,10 +27,6 @@ import kotlinx.android.synthetic.main.content_main.view.*
 class MainActivity : AppCompatActivity() {
 
     private var downloadID: Long = 0
-
-    private lateinit var notificationManager: NotificationManager
-    private lateinit var pendingIntent: PendingIntent
-    private lateinit var action: NotificationCompat.Action
     private var downloadUrl: String? = null
     private lateinit var fileName: String
 
@@ -71,12 +67,23 @@ class MainActivity : AppCompatActivity() {
 
             val notificationManager = getSystemService(NotificationManager::class.java)
             var status: String? = null
+            var downloadStatus: Int? = null
 
             val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-            if (id?.let { downloadManager.getUriForDownloadedFile(it) } != null){
-                status = "SUCCESS"
-            } else {
-                status = "FAIL"
+            val query = id?.let { DownloadManager.Query().setFilterById(it) }
+            val cursor = downloadManager.query(query)
+
+            if (cursor.moveToFirst()) {
+                downloadStatus = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+            }
+
+            when (downloadStatus) {
+                DownloadManager.STATUS_SUCCESSFUL -> {
+                    status = "SUCCESS"
+                }
+                DownloadManager.STATUS_FAILED -> {
+                    status = "FAIL"
+                }
             }
 
             if (context != null) {
@@ -161,5 +168,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(downloadManagerReceiver)
     }
 }

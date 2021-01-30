@@ -15,7 +15,7 @@ private const val CHECK_STATUS_ACTION = "Check Status"
 
 fun NotificationManager.sendNotification(
     fileName: String,
-    status: String,
+    status: String?,
     contentText: String,
     notificationTitle: String,
     channelId: String,
