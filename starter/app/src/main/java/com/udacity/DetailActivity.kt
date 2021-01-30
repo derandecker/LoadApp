@@ -22,8 +22,7 @@ class DetailActivity : AppCompatActivity() {
 
         if (statusExtra == "FAIL") {
             status.setTextColor(Color.RED)
-        }
-        else if (statusExtra == "SUCCESS") {
+        } else if (statusExtra == "SUCCESS") {
             status.setTextColor(Color.GREEN)
         }
 
